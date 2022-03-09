@@ -1,7 +1,7 @@
 /* Buttons Layout */
 
 .button-base {
-    display: block;
+    position: absolute;
     width: 150px;
     height: 150px;
     border-radius: 10%;
@@ -11,22 +11,30 @@
 
 .red-button {
     background-color: red;
+    top: 80px;
 }
 
 .green-button {
     background-color: green;
-}
-
-.blue-button {
-    background-color: blue;
-}
-
-.yellow-button {
-    background-color: yellow;
+    top: 80px;
+    left: 600px;
 }
 
 .white-button {
     background-color: white;
+    top: 230px;
+    left: 350px;
+}
+
+.blue-button {
+    background-color: blue;
+    top: 380px;
+}
+
+.yellow-button {
+    background-color: yellow;
+    top: 380px;
+    left: 600px;
 }
 
 /* Buttons Effects */
