@@ -1,7 +1,36 @@
-.red-button {
+/* Buttons Layout */
+
+.button-base {
     display: block;
-    background-color: red;
     width: 150px;
     height: 150px;
     border-radius: 10%;
+    border: 1px solid black;
+    transition: transform .3s;
+}
+
+.red-button {
+    background-color: red;
+}
+
+.green-button {
+    background-color: green;
+}
+
+.blue-button {
+    background-color: blue;
+}
+
+.yellow-button {
+    background-color: yellow;
+}
+
+.white-button {
+    background-color: white;
+}
+
+/* Buttons Effects */
+
+.button-base:hover {
+    transform: scale(1.1);
 }
