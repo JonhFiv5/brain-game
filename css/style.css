@@ -40,8 +40,8 @@
 
 .button-start {
     position: absolute;
-    top: 300px;
-    right: 300px;
+    top: 25px;
+    left: 450px;
 }
 
 /* Buttons Effects */

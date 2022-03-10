@@ -1,7 +1,13 @@
 function generateSequence(colors) {
     let sequence = [];
+    let oldNumber = -1;
+    let newNumber = -1;
     for(let i = 0; i < 6; i++) {
-        sequence.push(Math.floor(Math.random() * colors.length));
+        do {
+            newNumber = Math.floor(Math.random() * colors.length);
+        } while(newNumber == oldNumber);
+        sequence.push(newNumber);
+        oldNumber = newNumber;
     }
     return sequence;
 }
@@ -14,5 +20,5 @@ function highlightButton(button) {
     
     setTimeout(function() {
         button.style.filter = defaultContrast;
-    }, 2000);
+    }, 1000);
 }

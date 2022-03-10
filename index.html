@@ -24,9 +24,8 @@
         <script src="js/script.js"></script>
         <script>
             let colors = ["Red", "Green", "Blue", "Yellow", "White"];
-            // var sequence = generateSequence(colors);
-            var sequence = [2, 3, 3, 2];
-
+            var sequence = generateSequence(colors);
+            console.log(sequence);
             const redButton = document.getElementById("red-button");
             const greenButton = document.getElementById("green-button");
             const blueButton = document.getElementById("blue-button");
@@ -40,7 +39,7 @@
                     setTimeout(function() {
                         console.log(buttons[sequence[i]]);
                         highlightButton(buttons[sequence[i]]);
-                    }, 2000 * i);
+                    }, 1000 * i);
                 }
             }
 
