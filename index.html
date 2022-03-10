@@ -12,19 +12,45 @@
         <div class="container">
             <h1>Good Luck!</h1>
             <div class="game-buttons">
-                <button id="red-button" class="button-base red-button"></button>
-                <button id="green-button" class="button-base green-button"></button>
-                <button id="blue-button" class="button-base blue-button"></button>
-                <button id="yellow-button" class="button-base yellow-button"></button>
-                <button id="white-button" class="button-base white-button"></button>
-                <button id="start" class="btn btn-primary button-start" onclick="start()">START</button>
+                <button id="red-button" class="button-base red-button" onplay="doNote.play()" onclick="doNote.play(), buildPlayerSequence(this.id)"></button>
+                <button id="green-button" class="button-base green-button" onplay="reNote.play()" onclick="reNote.play(), buildPlayerSequence(this.id)"></button>
+                <button id="blue-button" class="button-base blue-button" onplay="miNote.play()" onclick="miNote.play(), buildPlayerSequence(this.id)"></button>
+                <button id="yellow-button" class="button-base yellow-button" onplay="faNote.play()" onclick="faNote.play(), buildPlayerSequence(this.id)"></button>
+                <button id="white-button" class="button-base white-button" onplay="solNote.play()" onclick="solNote.play(), buildPlayerSequence(this.id)"></button>
+            </div>
+            <div id="statistics-n-controls">
+                <div class="row">
+                    <div class="col">
+                        <div id="level-container"><h2>Level: <span id="level">1</span></h2></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div id="score-container"><h2>Score: <span id="score">0</span></h2></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <button id="start" class="btn btn-primary button-start btn-block" onclick="start()">START</button>
+                    </div>
+                </div>
             </div>
         </div>
 
         <script src="js/script.js"></script>
         <script>
-            let colors = ["Red", "Green", "Blue", "Yellow", "White"];
+            var doNote = new Audio("assets/do.wav");
+            var reNote = new Audio("assets/re.wav");
+            var miNote = new Audio("assets/mi.wav");
+            var faNote = new Audio("assets/fa.wav");
+            var solNote = new Audio("assets/sol.wav");
+
+            var currentLevel = 1;
+            var score = document.getElementById("score");
+            var level = document.getElementById("level");
+            var colors = ["red-button", "green-button", "blue-button", "yellow-button", "white-button"];
             var sequence = generateSequence(colors);
+            var playerSequence = [];
             console.log(sequence);
             const redButton = document.getElementById("red-button");
             const greenButton = document.getElementById("green-button");
@@ -35,14 +61,72 @@
             const buttons = [redButton, greenButton, blueButton, yellowButton, whiteButton];
 
             function start() {
-                for(let i = 0; i < sequence.length; i++) {
+                let loopEnd = (currentLevel + 2) < sequence.length ? currentLevel + 2 : sequence.length;
+                for(let i = 0; i < loopEnd; i++) {
                     setTimeout(function() {
-                        console.log(buttons[sequence[i]]);
                         highlightButton(buttons[sequence[i]]);
                     }, 1000 * i);
                 }
             }
 
+            function buildPlayerSequence(buttonId) {
+                playerSequence.push(colors.indexOf(buttonId));
+                checkAnswer();
+            }
+
+            function checkAnswer() {
+                let correctAnswer = true;
+                for (let i = 0; i < playerSequence.length; i++) {
+                    if (playerSequence[i] != sequence[i]) {
+                        correctAnswer = false;
+                        break;
+                    }
+                }
+                
+                if (correctAnswer) {
+                    updateScore();
+                } else {
+                    alert("Errado!");
+                    sequence = generateSequence(colors);
+                    updateScore(0);
+                    updateLevel(0);
+                    currentLevel = 1;
+                    playerSequence = [];
+                }
+
+
+                if (playerSequence.length == currentLevel + 2) {
+                    if (correctAnswer) {
+                        alert("Certo!");
+                        currentLevel += 1;
+                        playerSequence = [];
+                        updateLevel();
+                        start();
+                    }
+                }
+
+                if (playerSequence.length == sequence.length) {
+                    if (correctAnswer) {
+                        alert("Você completou o jogo!");
+                    }
+                }
+            }
+
+            function updateScore(value = 1) {
+                if (value != 0) {
+                    score.innerText = parseInt(score.innerText) + value;
+                } else {
+                    score.innerText = value;
+                }
+            }
+
+            function updateLevel(value = 1) {
+                if (value != 0) {
+                    level.innerText = parseInt(level.innerText) + value;
+                } else {
+                    level.innerText = 1;
+                }
+            }
         </script>
     </body>
 </html>

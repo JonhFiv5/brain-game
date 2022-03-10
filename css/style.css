@@ -38,10 +38,9 @@
     left: 600px;
 }
 
-.button-start {
+#statistics-n-controls {
     position: absolute;
-    top: 25px;
-    left: 450px;
+    right: 350px;
 }
 
 /* Buttons Effects */
