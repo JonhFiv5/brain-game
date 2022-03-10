@@ -7,6 +7,7 @@
     border-radius: 10%;
     border: 1px solid black;
     transition: transform .3s;
+    filter: contrast(20%);
 }
 
 .red-button {
@@ -15,7 +16,7 @@
 }
 
 .green-button {
-    background-color: green;
+    background-color: rgb(28, 238, 28);
     top: 80px;
     left: 600px;
 }
@@ -27,7 +28,7 @@
 }
 
 .blue-button {
-    background-color: blue;
+    background-color: rgb(28, 202, 255);
     top: 380px;
 }
 
@@ -35,6 +36,12 @@
     background-color: yellow;
     top: 380px;
     left: 600px;
+}
+
+.button-start {
+    position: absolute;
+    top: 300px;
+    right: 300px;
 }
 
 /* Buttons Effects */

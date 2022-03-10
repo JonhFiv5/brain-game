@@ -11,18 +11,39 @@
     <body>
         <div class="container">
             <h1>Good Luck!</h1>
-            <div class="buttons">
+            <div class="game-buttons">
                 <button id="red-button" class="button-base red-button"></button>
-                <button id="red-button" class="button-base green-button"></button>
-                <button id="red-button" class="button-base blue-button"></button>
-                <button id="red-button" class="button-base yellow-button"></button>
-                <button id="red-button" class="button-base white-button"></button>
+                <button id="green-button" class="button-base green-button"></button>
+                <button id="blue-button" class="button-base blue-button"></button>
+                <button id="yellow-button" class="button-base yellow-button"></button>
+                <button id="white-button" class="button-base white-button"></button>
+                <button id="start" class="btn btn-primary button-start" onclick="start()">START</button>
             </div>
         </div>
 
         <script src="js/script.js"></script>
         <script>
-            
+            let colors = ["Red", "Green", "Blue", "Yellow", "White"];
+            // var sequence = generateSequence(colors);
+            var sequence = [2, 3, 3, 2];
+
+            const redButton = document.getElementById("red-button");
+            const greenButton = document.getElementById("green-button");
+            const blueButton = document.getElementById("blue-button");
+            const yellowButton = document.getElementById("yellow-button");
+            const whiteButton = document.getElementById("white-button");
+
+            const buttons = [redButton, greenButton, blueButton, yellowButton, whiteButton];
+
+            function start() {
+                for(let i = 0; i < sequence.length; i++) {
+                    setTimeout(function() {
+                        console.log(buttons[sequence[i]]);
+                        highlightButton(buttons[sequence[i]]);
+                    }, 2000 * i);
+                }
+            }
+
         </script>
     </body>
 </html>
